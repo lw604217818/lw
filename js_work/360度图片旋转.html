@@ -1,0 +1,54 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>360度图片旋转</title>
+<style>
+body {margin:0;}
+img {width:640px; height:378px; position:absolute; left:50%; top:50%; margin-top:-189px; margin-left:-320px;}
+#left{ position:absolute; left:0; top:0; width:50%; height:100%; background:red; opacity:0; filter:alpha(opacity:0);}
+#right{ position:absolute; right:0; top:0; width:50%; height:100%; background:#ccc; opacity:0; filter:alpha(opacity:0);}
+a{ cursor:default;}
+</style>
+<script>
+window.onload=function(){
+	var oImg=document.getElementById('img1');
+	var oLeft=document.getElementById('left');
+	var oRight=document.getElementById('right');
+	
+	var count=0;
+	var timer=null;
+	
+	oLeft.onmouseover=function (){
+		clearInterval(timer);
+		timer=setInterval(function(){
+			count++;
+			oImg.src='../images/work/360/'+(count%77)+'.jpg';
+		//	var a=count%77;
+		//	console.log(a);
+			if(count==76)count=-1;
+		},30);
+	}
+	oRight.onmouseover=function (){
+		clearInterval(timer);
+		timer=setInterval(function(){
+			if(count==0)count=77;
+			count--;
+			oImg.src='../images/work/360/'+(count%77)+'.jpg';
+		//	var a=count%77;
+		//	console.log(a);
+		},30);
+	}
+	oLeft.onmouseout=oRight.onmouseout=function(){
+		clearInterval(timer);
+	};
+};
+</script>
+</head>
+
+<body>
+<img id="img1" src="../images/work/360/0.jpg" />
+<a href="javascript:;" id="left"></a>
+<a href="javascript:;" id="right"></a>
+</body>
+</html>
