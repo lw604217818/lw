@@ -40,7 +40,9 @@
 				<div class="pxs_bg2"></div>
 				<div class="pxs_bg3"></div>
 			</div>
-			<!-- <div class="pxs_loading">Loading images...</div> -->
+			<div class="pxs_loading">
+				<div class="loading">Loading images...</div>
+			</div>
 			<div class="pxs_slider_wrapper">
 				<ul class="pxs_slider">
 					<li>
@@ -119,8 +121,21 @@
 		<div class="timeClock"></div>
 	</footer>
 	<!-- header -->
-		
+
 	<script src="js/common.js"></script>
+	<script>
+		var oLoad = getByClass(document.body, 'pxs_loading')[0];
+		
+		var imgs = document.getElementsByTagName('img');
+		for(var i=0;i<imgs.length;i++)
+		{
+			imgs[i].onload = function()
+			{
+				oLoad.style.display = 'none';
+			}
+		}
+	</script>  
+	
 	<script src="js/onMove.js"></script>
 	<script src="js/html5_work.js"></script>
 </body>
